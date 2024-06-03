@@ -1,0 +1,44 @@
+section{
+  margin: 50px;
+}
+
+section {
+  overflow-x:hidden;
+}
+.slideInRight {
+  animation-name: slideInRight;
+} 
+.slideInDown {
+  animation-name: slideInDown;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.topnav>a:nth-child(1){
+  background-image: linear-gradient(to right top, #ff660d, #8800ff);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-style: italic;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 1024px) {
+  section{
+    margin: 10px;
+  }
+  th{
+    padding: 8px 2px;
+    font-size: 11px;
+  }
+  td{
+    padding: 8px;
+    font-size: 10px;
+  }
+  h1 {
+    font-size: 18px !important;
+  }
+}

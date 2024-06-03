@@ -1,0 +1,84 @@
+th{
+  font-size: 19px;
+  text-transform: none;
+}
+td{
+  font-size: 17px;
+}
+section {
+	display: block;
+	margin: 20px auto;
+}
+.panel {
+  border-color: #388994 !important;
+}
+.panel-heading {
+  background-color: #388994 !important;
+}
+.panel-body {
+  background-color: #46abb9 !important;
+}
+
+.mode_select {
+  display: block;
+  position: relative;
+}
+.mode_select input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.mode_select label {
+  background-color: #46abb9;
+  color: #000;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  padding: 6px 12px;
+  margin-right: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+}
+
+.mode_select label:hover {
+  cursor: pointer;
+}
+
+.mode_select input:checked + label {
+  background-color: #5cb85c;
+  color: #fff;
+  box-shadow: none;
+}
+
+.alert_dev {
+  position: absolute;
+  top: 100px;
+  right: 80px;
+  animation: slide_1 ease 1s;
+}
+
+.alert_dev_del {
+  position: absolute;
+  right: 20px;
+  height: 30px;
+}
+
+.topnav>a:nth-child(4){
+  background-image: linear-gradient(to right top, #ff660d, #8800ff);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-style: italic;
+  text-align: center;
+}
+
+
+@media only screen and (max-width : 740px) {
+  .modal-dialog {
+      margin: 0;
+  }
+}
