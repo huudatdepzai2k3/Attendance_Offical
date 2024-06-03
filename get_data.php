@@ -234,9 +234,10 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                 }
             }
             else if ($device_mode == 0) {
-                if (empty($fingerprint_id) || empty($card_uid)) {
-                    echo "Conventional transmission parameter errors (Add id)";
-                } else {
+                $sql = "SELECT * FROM users WHERE fingerprint_id= -1";
+                $result = mysqli_query($conn, $sql);
+                $num_row_no_finger = mysqli_num_rows($result);
+                if (empty($fingerprint_id) && !empty($card_uid)) {
                     //New Card has been added
                     $sql = "SELECT * FROM users WHERE card_uid=?";
                     $stmt = mysqli_stmt_init($conn);
@@ -279,7 +280,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                             mysqli_stmt_bind_param($stmt, "s", $card_uid);
                                             mysqli_stmt_execute($stmt);
     
-                                            echo "available";
+                                            echo "available card_uid";
                                             exit();
                                         }
                                     }
@@ -295,7 +296,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                         mysqli_stmt_bind_param($stmt, "s", $card_uid);
                                         mysqli_stmt_execute($stmt);
     
-                                        echo "available";
+                                        echo "available card_uid";
                                         exit();
                                     }
                                 }
@@ -311,22 +312,47 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                             }
                             else{
                                 mysqli_stmt_execute($stmt);
-                                $sql = "INSERT INTO users (card_uid, fingerprint_id, card_select, device_uid, device_dep, user_date) VALUES (?, ?, 1, ?, ?, CURDATE())";
-                                $stmt = mysqli_stmt_init($conn);
-                                if (!mysqli_stmt_prepare($stmt, $sql)) {
-                                    echo "SQL_Error_Select_add";
-                                    exit();
-                                }
-                                else{
-                                    mysqli_stmt_bind_param($stmt, "ssss", $card_uid, $fingerprint_id, $device_uid, $device_dep );
-                                    mysqli_stmt_execute($stmt);
-    
+                                if ($num_row_no_finger == 0) {
+                                    $sql = "INSERT INTO users (card_uid, fingerprint_id, card_select, device_uid, device_dep, user_date) VALUES (?, ?, 1, ?, ?, CURDATE())";
+                                    $stmt = mysqli_stmt_init($conn);
+                                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                        echo "SQL_Error_Select_add";
+                                        exit();
+                                    }
+                                    else{
+                                        $fingerprint_id = -1;
+                                        mysqli_stmt_bind_param($stmt, "ssss", $card_uid, $fingerprint_id, $device_uid, $device_dep);
+                                        mysqli_stmt_execute($stmt);
+                                        
+                                        echo "successful";
+                                        exit();
+                                    }
+                                } else {
+                                    $sql = "UPDATE users SET card_uid = '$card_uid' WHERE fingerprint_id= -1";
+                                    mysqLi_query($conn , $sql);
+                                    
                                     echo "successful";
                                     exit();
                                 }
                             }
                         }
-                    }    
+                    }
+                } else if (!empty($fingerprint_id) && empty($card_uid)){
+                    if($num_row_no_finger == 1){
+                        $sql = "SELECT * FROM users WHERE fingerprint_id= $fingerprint_id";
+                        $result = mysqli_query($conn, $sql);
+                        if(mysqli_num_rows($result) == 0){
+                            $sql = "UPDATE users SET fingerprint_id = $fingerprint_id WHERE fingerprint_id= -1";
+                            mysqLi_query($conn , $sql);
+                            echo "successful";
+                        } else {
+                            echo "available fingerprint";
+                        }
+                    } else {
+                        echo "error";
+                    }
+                } else {
+                    echo "Conventional transmission parameter errors (Add id)"; 
                 } 
             }
         }

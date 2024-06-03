@@ -1,7 +1,7 @@
 <?php  
 session_start();
 ?>
-<div class="table-responsive" style="max-height: 700px;"> 
+<div class="table-responsive" style="max-height: 500px ; overflow-y: scroll;"> 
   <table class="table">
     <thead class="table-primary">
       <tr>
