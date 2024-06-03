@@ -61,20 +61,21 @@ require '../connectDB.php';
                     $mail->isSMTP();                                       
                     $mail->Host       = 'smtp.gmail.com';                     
                     $mail->SMTPAuth   = true;                                   
-                    $mail->Username   = 'datnguyenhuu555@gmail.com';                    
-                    $mail->Password   = 'pdjaklacksylovlf';                               
+                    $mail->Username   = 'ducluong19082003@gmail.com';                    
+                    $mail->Password   = 'npqcawjsprunhqlr';                               
                     $mail->SMTPSecure = 'ssl';            
                     $mail->Port       = 465;                                   
 
                     //Recipients
-                    $mail->setFrom('datnguyenhuu555@gmail.com', 'Admin_attendance');
+                    $mail->setFrom('ducluong19082003@gmail.com', 'Admin_attendance');
                     $mail->addAddress("$userEmail", '');     
     
                     //Content
                     $mail->isHTML(true);                                  
                     $mail->Subject = 'Confirm reset password';
                     $mail->Body    = '<div style="margin: 0 100px;">
-                                  <center><img src="https://th.bing.com/th/id/R.774ec13563a37a318e20f6ef6ff2cdc6?rik=e4Yz6SrL5s8OTQ&pid=ImgRaw&r=0" width="210px" height="70px"></br><b>Confirm reset password</b></center>
+                                  <center><img src="https://th.bing.com/th/id/OIP.d07BNWOjejGOIPbvb_LNxgHaEK?w=303&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" width="212px" height="74px"></br>
+                                  <b style="font-size = 20px;font-style: italic;">Confirm reset password</b></center>
                                   <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px;margin: 10px 50px;"> We recieved a password reset request from you. The link to reset your password is below. If you did not make this request, you can ignore this email<a href="https://' .$url . '" style="text-decoration: none;"> Click Here </a> to create new password.</br>
                                   <p><b>Note:</b>This link is only available for 5 minutes</br></br>
                                   Thanks,</br>The Attendance teams</p></div></div>';

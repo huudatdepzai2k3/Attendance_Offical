@@ -29,7 +29,7 @@ if (!isset($_SESSION['Admin-name'])) {
 <section>
   <h1 class="slideInDown animated">Here are all the Users</h1>
   <!--User table-->
-  <div class="table-responsive slideInRight animated" style="max-height: 400px;"> 
+  <div class="table-responsive slideInRight animated" style="max-height: 500px;overflow-y: scroll;"> 
     <table class="table">
       <thead class="table-primary">
         <tr>

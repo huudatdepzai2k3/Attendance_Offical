@@ -59,20 +59,21 @@ if(isset($_POST["button-change-submit"])) {
                 $mail->isSMTP();                                       
                 $mail->Host       = 'smtp.gmail.com';                     
                 $mail->SMTPAuth   = true;                                   
-                $mail->Username   = 'datnguyenhuu555@gmail.com';                    
-                $mail->Password   = 'pdjaklacksylovlf';                               
+                $mail->Username   = 'ducluong19082003@gmail.com';                    
+                $mail->Password   = 'npqcawjsprunhqlr';                               
                 $mail->SMTPSecure = 'ssl';            
                 $mail->Port       = 465;                                   
 
                 //Recipients
-                $mail->setFrom('datnguyenhuu555@gmail.com', 'Admin_attendance');
+                $mail->setFrom('ducluong19082003@gmail.com', 'Admin_attendance');
                 $mail->addAddress("$emailNew ", '');     
 
                 //Content
                 $mail->isHTML(true);                                  
                 $mail->Subject = 'Confirm new email login change';
                 $mail->Body    = '<div style="margin: 0 100px;">
-                                  <center><img src="https://th.bing.com/th/id/R.774ec13563a37a318e20f6ef6ff2cdc6?rik=e4Yz6SrL5s8OTQ&pid=ImgRaw&r=0" width="210px" height="70px"></br><b>Confirm change email login</b></center>
+                                  <center><img src="https://th.bing.com/th/id/OIP.d07BNWOjejGOIPbvb_LNxgHaEK?w=303&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" width="212px" height="74px"></br>
+                                  <b style="font-size = 20px;font-style: italic;">Confirm change email login</b></center>
                                   <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px;margin: 10px 50px;">We received an email change request from you. To confirm the email change request, please copy the OTP below:</br>
                                   <center style="margin: 10px;"><b style="color: #78ff07">'. $otp .'</b></center>
                                   <p><b>Note:</b> This OTP is only available for 5 minutes</br></br>
