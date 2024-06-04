@@ -1,4 +1,4 @@
-<div class="table-responsive-sm" style="max-height: 870px;"> 
+<div class="table-responsive-sm" style="max-height: 600px; overflow-y: scroll;"> 
   <table class="table">
     <thead class="table-primary">
       <tr>

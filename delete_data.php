@@ -4,7 +4,7 @@ require'connectDB.php';
 
 $output = '';
 
-if(isset($_POST["To_Excel"])){
+if(isset($_POST["To_Delete"])){
   
     $searchQuery = " ";
     $Start_date = " ";
@@ -73,40 +73,12 @@ if(isset($_POST["To_Excel"])){
     $sql = "SELECT * FROM users_logs WHERE ".$_SESSION['searchQuery']." ORDER BY id DESC";
     $result = mysqli_query($conn, $sql);
     if($result->num_rows > 0){
-      $output .= '
-                  <table class="table" bordered="1">  
-                    <TR>
-                      <TH>STT</TH>
-                      <TH>Name</TH>
-                      <TH>Serial Number</TH>
-                      <TH>Fingerprint </TH>
-                      <TH>Card UID</TH>
-                      <TH>Device Dep</TH>
-                      <TH>Date log</TH>
-                      <TH>Time In</TH>
-                      <TH>Time Out</TH>
-                    </TR>';
-        $stt_start = 0;
         while($row=$result->fetch_assoc()) {
-            $stt_start = $stt_start + 1;
-            $output .= '
-                        <TR> 
-                            <TD> '.$stt_start.'</TD>
-                            <TD> '.$row['username'].'</TD>
-                            <TD> '.$row['serialnumber'].'</TD>
-                            <TD> '.$row['fingerprint_id'].'</TD>
-                            <TD> '.$row['card_uid'].'</TD>
-                            <TD> '.$row['device_dep'].'</TD>
-                            <TD> '.$row['checkindate'].'</TD>
-                            <TD> '.$row['timein'].'</TD>
-                            <TD> '.$row['timeout'].'</TD>
-                        </TR>';
+            $id_delete = $row['id'];
+            $sql = "DELETE FROM users_logs WHERE id = $id_delete";
+            mysqLi_query($conn, $sql);
         }
-        $output .= '</table>';
-        header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=User_Log'.$Start_date."_to_".$End_date.'.xls');
-        
-        echo $output;
+        header( "location:./UsersLog.php?delete_data_user_log=success");
         exit();
     }
     else{

@@ -5,7 +5,7 @@ session_start();
   <table class="table">
     <thead class="table-primary">
       <tr>
-        <th>ID</th>
+        <th>STT</th>
         <th>Name</th>
         <th>Serial Number</th>
         <th>FingerPrint ID</th>
@@ -102,10 +102,12 @@ session_start();
             mysqli_stmt_execute($result);
             $resultl = mysqli_stmt_get_result($result);
             if (mysqli_num_rows($resultl) > 0){
+                $stt_start = mysqli_num_rows($resultl) + 1;
                 while ($row = mysqli_fetch_assoc($resultl)){
+                  $stt_start = $stt_start - 1;
                  ?>
                   <TR>
-                    <TD><?php echo $row['id'];?></TD>
+                    <TD><?php echo $stt_start;?></TD>
                     <TD><?php echo $row['username'];?></TD>
                     <TD><?php echo $row['serialnumber'];?></TD>
                     <TD><?php echo $row['fingerprint_id'];?></TD>
