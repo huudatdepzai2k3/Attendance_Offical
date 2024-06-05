@@ -26,7 +26,7 @@ if(isset($_POST["button-change-submit"])) {
     }
     
     $pwd_check = password_verify($passwordRecentInput, $password_recent);
-2    if($pwd_check == true) {
+    if($pwd_check == true) {
         if($emailNew != $email_recent){
             $otp = bin2hex(random_bytes(8));
             $time_create = time();
