@@ -239,37 +239,32 @@ if (isset($_POST['delete'])) {
         }
         else{
             // Đặt địa chỉ URL của ESP8266
-            $url = 'http://192.168.207.150/attendance/delete_fingerprint';
-        
-            // Tạo dữ liệu POST
-            $data = array('fingerprint_id' => $fingerprint_id);
-            $data_string = http_build_query($data);
-        
+            $esp8266_ip = "192.168.1.100";
+            $esp8266_port = "80";
+
             // Khởi tạo cURL
             $ch = curl_init();
         
             // Thiết lập các tuỳ chọn cURL
-            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_URL, "http://$esp8266_ip:$esp8266_port/delete");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('id_deleted' => $fingerprint_id)));
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
             // Thực hiện yêu cầu cURL và lấy phản hồi
             $response = curl_exec($ch);
         
-            // Đóng cURL
-            curl_close($ch);
-        
             // Kiểm tra và hiển thị phản hồi
-            if ($response === false) {
+            if (curl_errno($ch)) {
                 echo "Error: " . curl_error($ch);
             } else {
-                echo "Response: " . $response;
+                echo "Response from ESP8266: " . $response;
                 mysqli_stmt_bind_param($result, "i", $fingerprint_id);
                 mysqli_stmt_execute($result);
-                exit();
             }
+
+            curl_close($ch);
         }
     }
 }
