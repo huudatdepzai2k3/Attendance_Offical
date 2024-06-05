@@ -59,7 +59,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                         //Login
                                         if (!$row = mysqli_fetch_assoc($result)){
     
-                                            $sql = "INSERT INTO users_logs (username, serialnumber, card_uid, fingerprint_id, device_uid, device_dep, checkindate, timein, timeout) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                            $sql = "INSERT INTO users_logs (username, serialnumber, card_uid, fingerprint_id, device_uid, device_dep, checkindate, timein, checkoutdate, timeout) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                                             $stmt = mysqli_stmt_init($conn);
                                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                                 echo "SQL_Error_Select_login1";
@@ -67,7 +67,8 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                             }
                                             else{
                                                 $timeout = "00:00:00";
-                                                mysqli_stmt_bind_param($stmt, "sdsssssss", $Uname, $Number, $card_uid, $fingerprint_id, $device_uid, $device_dep, $d, $t, $timeout);
+                                                $checkoutdate = "0000-00-00";
+                                                mysqli_stmt_bind_param($stmt, "sdssssssss", $Uname, $Number, $card_uid, $fingerprint_id, $device_uid, $device_dep, $d, $t, $checkoutdate, $timeout);
                                                 mysqli_stmt_execute($stmt);
     
                                                 
@@ -88,14 +89,14 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                         //*****************************************************
                                         //Logout
                                         else{
-                                            $sql="UPDATE users_logs SET timeout=?, card_out=1 WHERE card_uid=? AND checkindate=? AND card_out=0";
+                                            $sql="UPDATE users_logs SET timeout=?, checkoutdate=?, card_out=1 WHERE card_uid=? AND card_out=0";
                                             $stmt = mysqli_stmt_init($conn);
                                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                                 echo "SQL_Error_insert_logout1";
                                                 exit();
                                             }
                                             else{
-                                                mysqli_stmt_bind_param($stmt, "sss", $t, $card_uid, $d);
+                                                mysqli_stmt_bind_param($stmt, "sss", $t, $d, $card_uid);
                                                 mysqli_stmt_execute($stmt);
     
                                                 
@@ -164,7 +165,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                         //Login
                                         if (!$row = mysqli_fetch_assoc($result)){
     
-                                            $sql = "INSERT INTO users_logs (username, serialnumber, card_uid, fingerprint_id, device_uid, device_dep, checkindate, timein, timeout) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                            $sql = "INSERT INTO users_logs (username, serialnumber, card_uid, fingerprint_id, device_uid, device_dep, checkindate, timein, checkoutdate, timeout) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                                             $stmt = mysqli_stmt_init($conn);
                                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                                 echo "SQL_Error_Select_login1";
@@ -172,7 +173,8 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                             }
                                             else{
                                                 $timeout = "00:00:00";
-                                                mysqli_stmt_bind_param($stmt, "sdsssssss", $Uname, $Number, $card_uid, $fingerprint_id, $device_uid, $device_dep, $d, $t, $timeout);
+                                                $checkoutdate = "0000-00-00";
+                                                mysqli_stmt_bind_param($stmt, "sdssssssss", $Uname, $Number, $card_uid, $fingerprint_id, $device_uid, $device_dep, $d, $t, $checkoutdate, $timeout);
                                                 mysqli_stmt_execute($stmt);
     
                                                     $data = array(
@@ -192,14 +194,14 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                         //*****************************************************
                                         //Logout
                                         else{
-                                            $sql="UPDATE users_logs SET timeout=?, card_out=1 WHERE fingerprint_id=? AND checkindate=? AND card_out=0";
+                                            $sql="UPDATE users_logs SET timeout=?, checkoutdate=?, card_out=1 WHERE fingerprint_id=? AND card_out=0";
                                             $stmt = mysqli_stmt_init($conn);
                                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                                 echo "SQL_Error_insert_logout1";
                                                 exit();
                                             }
                                             else{
-                                                mysqli_stmt_bind_param($stmt, "sss", $t, $fingerprint_id, $d);
+                                                mysqli_stmt_bind_param($stmt, "sss", $t, $d, $fingerprint_id);
                                                 mysqli_stmt_execute($stmt);
     
                                                 $data = array(

@@ -82,13 +82,18 @@ if(isset($_POST["To_Excel"])){
                       <TH>Fingerprint </TH>
                       <TH>Card UID</TH>
                       <TH>Device Dep</TH>
-                      <TH>Date log</TH>
+                      <TH>Date Log In</TH>
                       <TH>Time In</TH>
+                      <TH>Date Log Out</TH>
                       <TH>Time Out</TH>
                     </TR>';
         $stt_start = 0;
         while($row=$result->fetch_assoc()) {
             $stt_start = $stt_start + 1;
+            if ($row['checkoutdate'] == "0000-00-00" && $row['timeout'] == "00:00:00"){
+                $row['checkoutdate'] = "empty";
+                $row['timeout'] = "empty";
+            }
             $output .= '
                         <TR> 
                             <TD> '.$stt_start.'</TD>
@@ -99,6 +104,7 @@ if(isset($_POST["To_Excel"])){
                             <TD> '.$row['device_dep'].'</TD>
                             <TD> '.$row['checkindate'].'</TD>
                             <TD> '.$row['timein'].'</TD>
+                            <TD> '.$row['checkoutdate'].'</TD>
                             <TD> '.$row['timeout'].'</TD>
                         </TR>';
         }

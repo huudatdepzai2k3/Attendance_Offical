@@ -238,11 +238,6 @@ if (isset($_POST['delete'])) {
             exit();
         }
         else{
-            mysqli_stmt_bind_param($result, "i", $fingerprint_id);
-            mysqli_stmt_execute($result);
-            echo 1;
-            exit();
-
             // Đặt địa chỉ URL của ESP8266
             $url = 'http://192.168.207.150/attendance/delete_fingerprint';
         
@@ -271,6 +266,9 @@ if (isset($_POST['delete'])) {
                 echo "Error: " . curl_error($ch);
             } else {
                 echo "Response: " . $response;
+                mysqli_stmt_bind_param($result, "i", $fingerprint_id);
+                mysqli_stmt_execute($result);
+                exit();
             }
         }
     }

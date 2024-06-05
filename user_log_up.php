@@ -11,8 +11,9 @@ session_start();
         <th>FingerPrint ID</th>
         <th>Card UID</th>
         <th>Department</th>
-        <th>Date</th>
+        <th>Date In</th>
         <th>Time In</th>
+        <th>Date Out</th>
         <th>Time Out</th>
       </tr>
     </thead>
@@ -115,6 +116,7 @@ session_start();
                     <TD><?php echo $row['device_dep'];?></TD>
                     <TD><?php echo $row['checkindate'];?></TD>
                     <TD><?php echo $row['timein'];?></TD>
+                    <TD><?php echo $row['checkoutdate'];?></TD>
                     <TD><?php echo $row['timeout'];?></TD>
                   </TR>
                 <?php

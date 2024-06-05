@@ -121,12 +121,13 @@ CREATE TABLE `users_logs` (
   `device_dep` varchar(20) NOT NULL,
   `checkindate` date NOT NULL,
   `timein` time NOT NULL,
+  `checkoutdate` date NOT NULL,
   `timeout` time NOT NULL,
   `card_out` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `users_logs` (`id`, `username`, `serialnumber`, `card_uid`,`fingerprint_id`,`device_uid`, `device_dep`, `checkindate`, `timein`, `timeout`, `card_out`) VALUES 
-  (1, 'Nguyen Van B', 1112, '444ry2f', 2, '007642b40dc47ec6', 'HUMG_DTDB2_K66', '2024-05-15', '12:40:21', '17:33:27', 1);
+INSERT INTO `users_logs` (`id`, `username`, `serialnumber`, `card_uid`,`fingerprint_id`,`device_uid`, `device_dep`, `checkindate`, `timein`,`checkoutdate`, `timeout`, `card_out`) VALUES 
+  (1, 'Nguyen Van B', 1112, '444ry2f', 2, '007642b40dc47ec6', 'HUMG_DTDB2_K66', '2024-05-15', '12:40:21', '2024-05-15', '17:33:27', 1);
 
   
 
