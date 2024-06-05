@@ -13,7 +13,7 @@ require '../connectDB.php';
     $token = random_bytes(16);
     $validator = bin2hex($token);
 
-    $url = "192.168.1.30/Attendance/create-new-password.php?selector=" . $selector . "&validator=" .$validator;
+    $url = "172.20.10.2/attendance/create-new-password.php?selector=" . $selector . "&validator=" .$validator;
 
     $time_create = time();
     $id = "1";
@@ -76,7 +76,7 @@ require '../connectDB.php';
                     $mail->Body    = '<div style="margin: 0 100px;">
                                   <center><img src="https://th.bing.com/th/id/OIP.d07BNWOjejGOIPbvb_LNxgHaEK?w=303&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" width="212px" height="74px"></br>
                                   <b style="font-size = 20px;font-style: italic;">Confirm reset password</b></center>
-                                  <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px;margin: 10px 50px;"> We recieved a password reset request from you. The link to reset your password is below. If you did not make this request, you can ignore this email<a href="https://' .$url . '" style="text-decoration: none;"> Click Here </a> to create new password.</br>
+                                  <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px;margin: 10px 50px;"> We recieved a password reset request from you. The link to reset your password is below. If you did not make this request, you can ignore this email<a href="http://' .$url . '" style="text-decoration: none;"> Click Here </a> to create new password.</br>
                                   <p><b>Note:</b>This link is only available for 5 minutes</br></br>
                                   Thanks,</br>The Attendance teams</p></div></div>';
                     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
