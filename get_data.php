@@ -45,14 +45,14 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                     $Number = $row['serialnumber'];
                                     $fingerprint_id = $row['fingerprint_id'];
 
-                                    $sql = "SELECT * FROM users_logs WHERE card_uid=? AND checkindate=? AND card_out=0";
+                                    $sql = "SELECT * FROM users_logs WHERE card_uid=? AND card_out=0";
                                     $stmt = mysqli_stmt_init($conn);
                                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                                         echo "SQL_Error_Select_logs";
                                         exit();
                                     }
                                     else{
-                                        mysqli_stmt_bind_param($stmt, "ss", $card_uid, $d);
+                                        mysqli_stmt_bind_param($stmt, "s", $card_uid);
                                         mysqli_stmt_execute($stmt);
                                         $result = mysqli_stmt_get_result($stmt);
                                         //*****************************************************
@@ -151,14 +151,14 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                     $Number = $row['serialnumber'];
                                     $card_uid = $row['card_uid'];
 
-                                    $sql = "SELECT * FROM users_logs WHERE fingerprint_id=? AND checkindate=? AND card_out=0";
+                                    $sql = "SELECT * FROM users_logs WHERE fingerprint_id=? AND card_out=0";
                                     $stmt = mysqli_stmt_init($conn);
                                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                                         echo "SQL_Error_Select_logs";
                                         exit();
                                     }
                                     else{
-                                        mysqli_stmt_bind_param($stmt, "ss", $fingerprint_id, $d);
+                                        mysqli_stmt_bind_param($stmt, "s", $fingerprint_id);
                                         mysqli_stmt_execute($stmt);
                                         $result = mysqli_stmt_get_result($stmt);
                                         //*****************************************************
