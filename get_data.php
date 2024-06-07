@@ -74,7 +74,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                                 
                                                 $data = array(
                                                     'Username' => $Uname,
-                                                    'SerialNumber' => $Number,
+                                                    'SerialNumber' => "$Number",
                                                     'Condition' => "login"
                                                 );
                                                 
@@ -102,7 +102,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
                                                 
                                                 $data = array(
                                                     'Username' => $Uname,
-                                                    'SerialNumber' => $Number,
+                                                    'SerialNumber' => "$Number",
                                                     'Condition' => "logout"
                                                 );
                                                 
@@ -179,7 +179,7 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
     
                                                     $data = array(
                                                         'Username' => $Uname,
-                                                        'SerialNumber' => $Number,
+                                                        'SerialNumber' => "$Number",
                                                         'Condition' => "login"
                                                     );
                                                     
@@ -206,8 +206,8 @@ if (isset($_GET['card_uid']) && isset($_GET['fingerprint_id']) && isset($_GET['d
     
                                                 $data = array(
                                                     'Username' => $Uname,
-                                                    'SerialNumber' => $Number,
-                                                    'Condition' => "logout"
+                                                    'SerialNumber' => "$Number",
+                                                    'Condition' => "lo/gout"
                                                 );
                                                 header('Content-Type: application/json');
                                                 echo json_encode($data);
